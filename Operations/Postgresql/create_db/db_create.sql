@@ -1,0 +1,24 @@
+CREATE DATABASE trtemplate ENCODING='UTF-8' LC_COLLATE = 'tr_TR.UTF-8' LC_CTYPE='tr_TR.UTF-8' TEMPLATE template0;
+    CREATE DATABASE "etransformation_gateway" TEMPLATE trtemplate ;
+    CREATE ROLE "etransformation_gateway" NOLOGIN;
+    CREATE ROLE "etransformation_gateway_owner" password '1aA23.279.!' IN ROLE "etransformation_gateway";
+    CREATE ROLE "etransformation_gateway_app" NOLOGIN IN ROLE "etransformation_gateway";
+    CREATE ROLE "etransformation_gateway_readonly" NOLOGIN IN ROLE "etransformation_gateway";
+    CREATE ROLE "etransformation_gateway_dwh" NOLOGIN IN ROLE "etransformation_gateway";
+    CREATE ROLE "etransformation_gateway_developer" NOLOGIN IN ROLE "etransformation_gateway";
+    CREATE ROLE "etransformation_gateway_report" NOLOGIN IN ROLE "etransformation_gateway";
+    \c "etransformation_gateway";
+
+GRANT CONNECT, TEMP ON DATABASE "etransformation_gateway" TO "etransformation_gateway";
+GRANT USAGE ON SCHEMA public TO "etransformation_gateway";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO "etransformation_gateway_app", "etransformation_gateway_developer";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT SELECT, UPDATE ON SEQUENCES TO "etransformation_gateway_app", "etransformation_gateway_developer";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT EXECUTE ON FUNCTIONS TO "etransformation_gateway_app", "etransformation_gateway_developer";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT USAGE ON TYPES TO "etransformation_gateway_app", "etransformation_gateway_developer";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT USAGE ON SCHEMAS TO "etransformation_gateway_app", "etransformation_gateway_developer";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT SELECT ON TABLES TO "etransformation_gateway_readonly","etransformation_gateway_dwh","etransformation_gateway_report";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT USAGE ON TYPES TO "etransformation_gateway_readonly","etransformation_gateway_dwh","etransformation_gateway_report";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT USAGE ON SCHEMAS TO "etransformation_gateway_readonly","etransformation_gateway_dwh","etransformation_gateway_report";
+ALTER DEFAULT PRIVILEGES FOR ROLE "etransformation_gateway_owner" GRANT SELECT ON SEQUENCES TO "etransformation_gateway_readonly","etransformation_gateway_dwh","etransformation_gateway_report";
+CREATE ROLE "etransformation_gateway_appuser" LOGIN IN ROLE "etransformation_gateway_app";
+ALTER ROLE "etransformation_gateway_appuser" PASSWORD 'NxATcpUiuJ5PuAityYrG+';
