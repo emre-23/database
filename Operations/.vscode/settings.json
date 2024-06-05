@@ -1,3 +1,9 @@
 {
-    "tabnine.receiveBetaChannelUpdates": true
+    "tabnine.receiveBetaChannelUpdates": true,
+    "editor.wordWrapColumn": 80,
+    "html.format.wrapLineLength": 80,
+    "diffEditor.wordWrap": "inherit",
+    "html.format.wrapAttributesIndentSize": null,
+    "editor.wordWrap": "on",
+    "editor.minimap.maxColumn": 150
 }
