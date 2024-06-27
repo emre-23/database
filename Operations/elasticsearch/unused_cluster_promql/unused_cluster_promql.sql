@@ -13,8 +13,3 @@ and
     )
   ) == 0
 )
-
-sum (elasticsearch_jvm_memory_used_bytes{_region="mars",_team="discovery",_cluster=~".*"}) / sum (elasticsearch_jvm_memory_max_bytes{_region="mars",_team="discovery",_cluster=~".*"}) * 100
-
-
-sum by (_federation, _region, _team, _environment, _cluster) (elasticsearch_jvm_memory_used_bytes{_region=~"$region", _team=~"$team", _cluster=~".*"}) / sum (elasticsearch_jvm_memory_max_bytes{_region=~"$region", _team=~"$team", _cluster=~".*"}) * 100 < 50
